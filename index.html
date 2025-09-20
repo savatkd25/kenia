@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🌻 Para Kenia 🌻</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(135deg, #87CEEB 0%, #fff9c4 50%, #ffe082 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      font-family: "Segoe UI", sans-serif;
+      position: relative;
+    }
+
+    h1 {
+      position: absolute;
+      top: clamp(10px, 3vh, 30px);
+      text-align: center;
+      width: 100%;
+      font-size: clamp(18px, 5vw, 28px);
+      color: #6d4c41;
+      animation: aparecer 2s ease-in-out forwards;
+      padding: 0 20px;
+      z-index: 100;
+    }
+
+    @keyframes aparecer {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .flor-contenedor {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .flor-contenedor:hover {
+      transform: translate(-50%, -50%) scale(1.2);
+      filter: brightness(1.2);
+    }
+
+    .tallo {
+      position: absolute;
+      width: 8px;
+      height: clamp(60px, 15vw, 120px);
+      background: linear-gradient(to bottom, #4caf50 0%, #388e3c 50%, #2e7d32 100%);
+      border-radius: 4px;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 5;
+      box-shadow: inset 2px 0 4px rgba(0,0,0,0.2);
+    }
+
+    .hoja {
+      position: absolute;
+      width: 20px;
+      height: 35px;
+      background: linear-gradient(45deg, #4caf50 0%, #66bb6a 50%, #388e3c 100%);
+      border-radius: 0 100% 0 100%;
+      transform-origin: bottom center;
+      z-index: 6;
+    }
+
+    .hoja.izquierda {
+      left: -15px;
+      top: 30%;
+      transform: rotate(-30deg);
+    }
+
+    .hoja.derecha {
+      right: -15px;
+      top: 60%;
+      transform: rotate(30deg) scaleX(-1);
+    }
+
+    .flor {
+      position: relative;
+      width: clamp(60px, 15vw, 100px);
+      height: clamp(60px, 15vw, 100px);
+      animation: flotar 4s ease-in-out infinite alternate;
+      z-index: 15;
+    }
+
+    @keyframes flotar {
+      from { transform: rotate(-2deg) scale(1); }
+      to { transform: rotate(2deg) scale(1.05); }
+    }
+
+    .petalo {
+      position: absolute;
+      width: clamp(25px, 8vw, 45px);
+      height: clamp(35px, 10vw, 60px);
+      background: linear-gradient(145deg, #ffeb3b 0%, #ffc107 50%, #ff8f00 100%);
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      top: 50%;
+      left: 50%;
+      transform-origin: center bottom;
+      box-shadow: 0 2px 8px rgba(255, 193, 7, 0.4);
+      animation: ondear 3s ease-in-out infinite;
+    }
+
+    @keyframes ondear {
+      0%, 100% { transform: translate(-50%, -50%) rotate(var(--rotation)) scale(1); }
+      50% { transform: translate(-50%, -50%) rotate(calc(var(--rotation) + 5deg)) scale(1.02); }
+    }
+
+    .centro {
+      position: absolute;
+      width: clamp(20px, 6vw, 35px);
+      height: clamp(20px, 6vw, 35px);
+      background: radial-gradient(circle at 30% 30%, #8d6e63 0%, #5d4037 50%, #3e2723 100%);
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 25;
+      box-shadow: 
+        inset 0 0 10px rgba(0,0,0,0.3),
+        0 3px 6px rgba(0,0,0,0.2);
+    }
+
+    .centro::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, transparent 40%, #2e1a16 60%);
+      border-radius: 50%;
+      top: 0;
+      left: 0;
+    }
+
+    .mensaje {
+      position: absolute;
+      bottom: clamp(20px, 5vh, 40px);
+      background: rgba(255, 255, 255, 0.95);
+      padding: clamp(10px, 3vw, 18px);
+      border-radius: 20px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+      font-size: clamp(14px, 4vw, 18px);
+      font-weight: bold;
+      color: #4e342e;
+      animation: aparecer 2s ease-in-out forwards;
+      max-width: 90vw;
+      text-align: center;
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+    }
+
+    .contador {
+      position: absolute;
+      top: clamp(60px, 12vh, 80px);
+      right: clamp(20px, 5vw, 40px);
+      background: rgba(255, 255, 255, 0.9);
+      padding: clamp(8px, 2vw, 12px) clamp(12px, 3vw, 18px);
+      border-radius: 15px;
+      font-size: clamp(12px, 3vw, 16px);
+      font-weight: bold;
+      color: #6d4c41;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      z-index: 100;
+    }
+
+    .efecto-click {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      border: 3px solid #ffeb3b;
+      border-radius: 50%;
+      animation: explosion 0.6s ease-out forwards;
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    @keyframes explosion {
+      0% {
+        transform: scale(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(3) rotate(180deg);
+        opacity: 0;
+      }
+    }
+
+    /* Responsive para móviles */
+    @media (max-width: 768px) {
+      .tallo {
+        width: 6px;
+        height: clamp(40px, 12vw, 80px);
+      }
+      
+      .hoja {
+        width: 15px;
+        height: 25px;
+      }
+      
+      .mensaje {
+        bottom: 15px;
+        padding: 8px 15px;
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 16px;
+        top: 5px;
+      }
+      
+      .contador {
+        top: 50px;
+        right: 10px;
+        padding: 6px 10px;
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>🌼 Haz clic para sembrar flores amarillas para Kenia 🌼</h1>
+  <div class="contador">🌻 Flores: <span id="contadorNumero">0</span></div>
+  <div class="mensaje">Con todo mi cariño para ti, Kenia 💛</div>
+
+  <script>
+    let contadorFlores = 0;
+    const maxFlores = 15; // Máximo de flores en pantalla
+    const contadorElemento = document.getElementById('contadorNumero');
+
+    function actualizarContador() {
+      contadorElemento.textContent = contadorFlores;
+    }
+
+    function crearEfectoClick(x, y) {
+      const efecto = document.createElement("div");
+      efecto.className = "efecto-click";
+      efecto.style.left = (x - 15) + "px";
+      efecto.style.top = (y - 15) + "px";
+      document.body.appendChild(efecto);
+
+      setTimeout(() => {
+        efecto.remove();
+      }, 600);
+    }
+
+    function crearFlor(x, y, esInteractiva = false) {
+      if (contadorFlores >= maxFlores) {
+        return; // No crear más flores si llegamos al máximo
+      }
+
+      const florContenedor = document.createElement("div");
+      florContenedor.className = "flor-contenedor";
+      florContenedor.style.left = x + "px";
+      florContenedor.style.top = y + "px";
+
+      // Crear flor primero (para que quede arriba visualmente)
+      const flor = document.createElement("div");
+      flor.className = "flor";
+
+      // Crear pétalos (8 pétalos para mayor realismo)
+      for (let i = 0; i < 8; i++) {
+        const petalo = document.createElement("div");
+        petalo.className = "petalo";
+        const rotacion = i * 45; // 360/8 = 45 grados
+        petalo.style.setProperty('--rotation', rotacion + 'deg');
+        petalo.style.transform = `translate(-50%, -50%) rotate(${rotacion}deg) translateY(-${clamp(15, window.innerWidth * 0.03, 25)}px)`;
+        petalo.style.animationDelay = `${i * 0.1}s`; // Animación escalonada
+        flor.appendChild(petalo);
+      }
+
+      // Crear centro
+      const centro = document.createElement("div");
+      centro.className = "centro";
+      flor.appendChild(centro);
+
+      florContenedor.appendChild(flor);
+
+      // Crear tallo después (para que quede atrás visualmente)
+      const tallo = document.createElement("div");
+      tallo.className = "tallo";
+      
+      // Crear hojas
+      const hojaIzq = document.createElement("div");
+      hojaIzq.className = "hoja izquierda";
+      
+      const hojaDer = document.createElement("div");
+      hojaDer.className = "hoja derecha";
+      
+      tallo.appendChild(hojaIzq);
+      tallo.appendChild(hojaDer);
+      florContenedor.appendChild(tallo);
+
+      // Agregar interactividad si es una flor clickeada
+      if (esInteractiva) {
+        florContenedor.addEventListener('click', (e) => {
+          e.stopPropagation();
+          // Efecto de partículas al hacer clic en la flor
+          for (let i = 0; i < 5; i++) {
+            setTimeout(() => {
+              crearEfectoClick(
+                x + (Math.random() - 0.5) * 60,
+                y + (Math.random() - 0.5) * 60
+              );
+            }, i * 100);
+          }
+          
+          // Animación especial
+          florContenedor.style.transform = 'translate(-50%, -50%) scale(1.5) rotate(360deg)';
+          florContenedor.style.transition = 'all 0.8s ease';
+          
+          setTimeout(() => {
+            florContenedor.style.transform = 'translate(-50%, -50%) scale(1) rotate(0deg)';
+          }, 800);
+        });
+
+        // Efecto hover mejorado para flores interactivas
+        florContenedor.addEventListener('mouseenter', () => {
+          florContenedor.style.filter = 'brightness(1.3) saturate(1.2)';
+          florContenedor.style.transform = 'translate(-50%, -50%) scale(1.3)';
+        });
+
+        florContenedor.addEventListener('mouseleave', () => {
+          florContenedor.style.filter = 'brightness(1) saturate(1)';
+          florContenedor.style.transform = 'translate(-50%, -50%) scale(1)';
+        });
+      }
+
+      document.body.appendChild(florContenedor);
+      contadorFlores++;
+      actualizarContador();
+
+      // Animación de entrada
+      florContenedor.style.opacity = '0';
+      florContenedor.style.transform = 'translate(-50%, -50%) scale(0) rotate(180deg)';
+      
+      setTimeout(() => {
+        florContenedor.style.transition = 'all 0.6s ease-out';
+        florContenedor.style.opacity = '1';
+        florContenedor.style.transform = 'translate(-50%, -50%) scale(1) rotate(0deg)';
+      }, 100);
+
+      // Quitar flor después de tiempo aleatorio (10-20 segundos)
+      const tiempoVida = Math.random() * 10000 + 10000;
+      setTimeout(() => {
+        if (florContenedor.parentNode) {
+          // Animación de salida
+          florContenedor.style.transition = 'all 0.8s ease-in';
+          florContenedor.style.opacity = '0';
+          florContenedor.style.transform = 'translate(-50%, -50%) scale(0) rotate(-180deg)';
+          
+          setTimeout(() => {
+            if (florContenedor.parentNode) {
+              florContenedor.remove();
+              contadorFlores--;
+              actualizarContador();
+            }
+          }, 800);
+        }
+      }, tiempoVida);
+    }
+
+    // Función helper para clamp (no disponible en todos los navegadores)
+    function clamp(min, val, max) {
+      return Math.max(min, Math.min(max, val));
+    }
+
+    // Crear flores con clic
+    document.addEventListener("click", (e) => {
+      // Evitar crear flores si se hace clic en elementos de interfaz
+      if (e.target.closest('.contador') || e.target.closest('h1') || e.target.closest('.mensaje')) {
+        return;
+      }
+      
+      crearEfectoClick(e.clientX, e.clientY);
+      crearFlor(e.clientX, e.clientY, true);
+    });
+
+    // Crear flores aleatorias al inicio y periódicamente
+    function crearFlorAleatoria() {
+      if (contadorFlores < maxFlores) {
+        const margen = 100; // Margen desde los bordes
+        const x = Math.random() * (window.innerWidth - 2 * margen) + margen;
+        const y = Math.random() * (window.innerHeight - 2 * margen) + margen;
+        crearFlor(x, y, false);
+      }
+    }
+
+    // Crear algunas flores iniciales
+    setTimeout(() => {
+      for (let i = 0; i < 3; i++) {
+        setTimeout(() => crearFlorAleatoria(), i * 1000);
+      }
+    }, 2000);
+
+    // Crear flores aleatorias cada 4-8 segundos
+    setInterval(() => {
+      if (Math.random() > 0.3) { // 70% de probabilidad
+        crearFlorAleatoria();
+      }
+    }, Math.random() * 4000 + 4000);
+
+    // Ajustar en redimensionamiento de ventana
+    window.addEventListener('resize', () => {
+      // Remover flores que estén fuera de los límites
+      const flores = document.querySelectorAll('.flor-contenedor');
+      flores.forEach(flor => {
+        const rect = flor.getBoundingClientRect();
+        if (rect.left < 0 || rect.right > window.innerWidth || 
+            rect.top < 0 || rect.bottom > window.innerHeight) {
+          flor.remove();
+          contadorFlores--;
+        }
+      });
+      actualizarContador();
+    });
+
+    // Inicializar contador
+    actualizarContador();
+  </script>
+</body>
+</html>
